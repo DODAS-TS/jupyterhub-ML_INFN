@@ -206,8 +206,8 @@ class CustomSpawner(dockerspawner.DockerSpawner):
 <br>
         <label for="gpu">GPU:</label>
         <select name="gpu" size="1">
-  <option value="Y">Yes</option>
-  <option value="N"> No </option>
+<option value="Y">Yes</option>
+<option value="N"> No </option>
 </select>
 """
 
