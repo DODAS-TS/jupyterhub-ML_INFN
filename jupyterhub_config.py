@@ -209,39 +209,7 @@ class CustomSpawner(dockerspawner.DockerSpawner):
         <label for="mem">Select your desired memory size:</label>
         <!-- MEM START -->
 <select name="mem" size="1">
-<option value="1G">1GB</option>
-<option value="2G">2GB</option>
-<option value="4G">4GB</option>
-<option value="6G">6GB</option>
-<option value="8G">8GB</option>
-<option value="10G">10GB</option>
-<option value="12G">12GB</option>
-<option value="14G">14GB</option>
-<option value="16G">16GB</option>
-<option value="18G">18GB</option>
-<option value="20G">20GB</option>
-<option value="22G">22GB</option>
-<option value="24G">24GB</option>
-<option value="26G">26GB</option>
-<option value="28G">28GB</option>
-<option value="30G">30GB</option>
-<option value="32G">32GB</option>
-<option value="34G">34GB</option>
-<option value="36G">36GB</option>
-<option value="38G">38GB</option>
-<option value="40G">40GB</option>
-<option value="42G">42GB</option>
-<option value="44G">44GB</option>
-<option value="46G">46GB</option>
-<option value="48G">48GB</option>
-<option value="50G">50GB</option>
-<option value="52G">52GB</option>
-<option value="54G">54GB</option>
-<option value="56G">56GB</option>
-<option value="58G">58GB</option>
-<option value="60G">60GB</option>
-<option value="62G">62GB</option>
-<option value="64G">64GB</option>
+<option value="10G">8GB</option>
 </select>
 <!-- MEM END -->
 
@@ -249,8 +217,7 @@ class CustomSpawner(dockerspawner.DockerSpawner):
 <br>
         <label for="gpu">GPU:</label>
         <select name="gpu" size="1">
-<option value="Y">Yes</option>
-<option value="N"> No </option>
+<option value="N"> Not Available </option>
 </select>
 """
 
