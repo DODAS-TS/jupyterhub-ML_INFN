@@ -1,0 +1,4 @@
+# Schedule every minute
+* * * * *	root	/usr/bin/rsnapshot alpha
+# Schedule every 10 minute
+# */10 * * * *	root	/usr/bin/rsnapshot alpha
