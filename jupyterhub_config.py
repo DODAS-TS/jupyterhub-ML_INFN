@@ -304,6 +304,7 @@ spawn_cmd = os.environ.get(
 
 c.DockerSpawner.port = 8889
 c.DockerSpawner.extra_create_kwargs.update({"command": spawn_cmd})
+c.DockerSpawner.post_start_cmd = "/usr/local/bin/hackaton_entrypoint.sh"
 
 c.DockerSpawner.network_name = "jupyterhub"
 
@@ -316,9 +317,9 @@ c.DockerSpawner.http_timeout = 600
 # notebook_dir = os.environ.get('DOCKER_NOTEBOOK_DIR') or '/home/jovyan/work'
 # c.DockerSpawner.notebook_dir = notebook_dir
 
-#cvmfs_mount_dir = (
+# cvmfs_mount_dir = (
 #    "/cvmfs/"  # os.environ.get('DOCKER_NOTEBOOK_DIR') or '/home/jovyan/work'
-#)
+# )
 
 notebook_mount_dir = "/jupyter-users"  # /{username}/"#os.environ.get('DOCKER_NOTEBOOK_DIR') or '/home/jovyan/work'
 # notebook_dir = "$PWD/persistent-area/{username}/"#os.environ.get('DOCKER_NOTEBOOK_DIR') or '/home/jovyan/work'
@@ -335,7 +336,7 @@ c.DockerSpawner.volumes = {
     + "/{username}/": {"bind": notebook_dir + "/private", "mode": "rw"},
     # Mount point for collaboration jupyter lab
     "/usr/local/share/collabspace": {"bind": "/workarea/collabspace", "mode": "rw"},
-#    cvmfs_mount_dir: notebook_dir + "/cvmfs",
+    #    cvmfs_mount_dir: notebook_dir + "/cvmfs",
 }
 
 # volume_driver is no longer a keyword argument to create_container()
