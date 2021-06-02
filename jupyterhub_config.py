@@ -329,7 +329,7 @@ notebook_dir = os.environ.get("DOCKER_NOTEBOOK_DIR") or "/"
 # notebook directory in the container
 # c.DockerSpawner.volumes = { 'jupyterhub-user-{username}': notebook_dir }
 c.DockerSpawner.volumes = {
-    notebook_mount_dir + "/Backup": {"bind": notebook_dir + "/Backup", "mode": "rw"},
+    notebook_mount_dir + "/Backup": {"bind": notebook_dir + "/Backup", "mode": "ro"},
     notebook_mount_dir + "/shared": {"bind": notebook_dir + "/shared", "mode": "rw"},
     # notebook_mount_dir
     # + "/shared/backup": {"bind": notebook_dir + "/shared/backup", "mode": "ro"},
