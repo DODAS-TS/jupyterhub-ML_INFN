@@ -14,14 +14,12 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y build-essential python3-dev py
 RUN python3 -m pip install -U pip setuptools
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl libcurl4-openssl-dev libssl-dev
 
-RUN python3 -m pip install --no-cache-dir idna==2.10
-RUN python3 -m pip install --no-cache-dir importlib-metadata==3.10.1
-RUN python3 -m pip install --no-cache-dir jupyterlab==3.1.7
+RUN python3 -m pip install --no-cache-dir jupyterlab==3.1.7 idna importlib-metadata
 # RUN python3 -m pip install --no-cache-dir jupyterlab-link-share
 
 RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
-RUN /bin/bash -c "jupyter lab build"
+# RUN /bin/bash -c "jupyter lab build"
 
 RUN python3 -m pip install --no-cache-dir jupyterhub pycurl
 RUN npm install -g configurable-http-proxy
