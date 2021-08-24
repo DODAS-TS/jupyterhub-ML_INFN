@@ -1,3 +1,4 @@
+# Image name: dodasts/base_collab:v1
 FROM ubuntu:20.04
 
 EXPOSE 8000

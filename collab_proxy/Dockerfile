@@ -1,3 +1,4 @@
+# Image name: dodasts/base_collab_proxy:v1
 FROM ubuntu:20.04
 
 EXPOSE 8099
@@ -14,4 +15,3 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y libcurl4-openssl-dev libssl-de
 COPY collab_proxy.py .
 
 CMD ["python3", "collab_proxy.py"]
-
