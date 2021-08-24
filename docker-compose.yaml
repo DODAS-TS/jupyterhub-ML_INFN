@@ -57,7 +57,8 @@ services:
   collab_proxy:
     depends_on:
       - jupyterlab_collab
-    build: collab_proxy
+    # build: collab_proxy
+    image: dodasts/base_collab_proxy:v1
     environment:
       - JUPYTERHUB_BASE_URL=http://jupyterhub:8088
       - JUPYTERHUB_API_URL=http://jupyterhub:8088/hub/api
@@ -70,7 +71,8 @@ services:
       - 8099:8099
 
   jupyterlab_collab:
-    build: jupyterlab_collab
+    # build: jupyterlab_collab
+    image: dodasts/base_collab:v1
     volumes:
       # You can create a certificate example with dodas-x509
       - /usr/local/share/certs/jupyter:/usr/local/share/certs/jupyter
