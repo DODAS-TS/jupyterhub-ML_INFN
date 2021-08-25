@@ -1,5 +1,6 @@
 FROM dciangot/dodas-iam-client-rec:test5 as REGISTRATION
 
+# image name: dodasts/base_jupyterhub:v1
 FROM jupyterhub/jupyterhub:1.4
 COPY requirements.txt /tmp/requirements.txt
 RUN python3 -m pip install -U pip
@@ -9,7 +10,7 @@ RUN mkdir /home/test && chown test: /home/test
 
 RUN apt-get update && apt-get install -y wget
 
-RUN wget "https://crt.sh/?d=2475254782" -O /usr/local/share/ca-certificates/ca.crt && update-ca-certificates
+RUN wget -O /usr/local/share/ca-certificates/ca.crt "https://crt.sh/?d=2475254782" && update-ca-certificates
 
 RUN mkdir -p .init
 
