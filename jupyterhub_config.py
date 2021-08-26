@@ -201,8 +201,7 @@ class CustomSpawner(dockerspawner.DockerSpawner):
         <label for="stack">Select your desired image:</label>
   <input list="images" name="img">
   <datalist id="images">
-<option value="dodasts/mlinfn-base:v1">DODASTS/MLINFN-BASE:V1</option>
-<option value="dodasts/mlinfn-conda-base:v2">DODASTS/MLINFN-CONDA-BASE:V2</option>
+<option value="EMPTY">DODASTS/EXAMPLE</option>
 </datalist>
 
 <br>

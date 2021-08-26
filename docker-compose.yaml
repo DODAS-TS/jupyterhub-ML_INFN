@@ -17,8 +17,8 @@ services:
     depends_on:
       - http_proxy
       - collab_proxy
-    # build: .
-    image: dodasts/base_jupyterhub:v1
+    build: .
+    # image: dodasts/base_jupyterhub:v1
     command:
       - /usr/bin/python3
       - /usr/local/bin/jupyterhub
