@@ -1,6 +1,6 @@
 FROM dciangot/dodas-iam-client-rec:test5 as REGISTRATION
 
-# image name: dodasts/base_jupyterhub:v1
+# Image name: dodasts/base_jupyterhub:v1
 FROM jupyterhub/jupyterhub:1.4
 COPY requirements.txt /tmp/requirements.txt
 RUN python3 -m pip install -U pip
