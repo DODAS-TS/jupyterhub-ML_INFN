@@ -190,35 +190,61 @@ c.JupyterHub.cookie_secret_file = "/srv/jupyterhub/cookies/jupyterhub_cookie_sec
 c.ConfigurableHTTPProxy.debug = True
 c.JupyterHub.cleanup_servers = False
 c.ConfigurableHTTPProxy.should_start = False
-c.ConfigurableHTTPProxy.auth_token = "test_token"
+c.ConfigurableHTTPProxy.auth_token = os.environ.get("JUPYTER_PROXY_TOKEN", "test_token")
 c.ConfigurableHTTPProxy.api_url = "http://http_proxy:8001"
 
 
-# Spawn single-user servers as Docker containers
-class CustomSpawner(dockerspawner.DockerSpawner):
-    def _options_form_default(self):
-        return """
-        <label for="stack">Select your desired image:</label>
-  <input list="images" name="img">
-  <datalist id="images">
-<option value="EMPTY">DODASTS/EXAMPLE</option>
+_option_template = """
+<label for="stack">Select your desired image:</label>
+<input list="images" name="img">
+<datalist id="images">
+{images}
 </datalist>
 
 <br>
-        <label for="mem">Select your desired memory size:</label>
-        <!-- MEM START -->
+    
+<label for="mem">Select your desired memory size:</label>
 <select name="mem" size="1">
-<option value="10G">8GB</option>
+    {rams}
 </select>
-<!-- MEM END -->
-
 
 <br>
-        <label for="gpu">GPU:</label>
-        <select name="gpu" size="1">
-<option value="N"> Not Available </option>
+
+<label for="gpu">GPU:</label>
+<select name="gpu" size="1">
+    {gpu}
 </select>
 """
+# Spawn single-user servers as Docker containers
+class CustomSpawner(dockerspawner.DockerSpawner):
+    def _options_form_default(self):
+        # Get images
+        images = os.environ.get("JUPYTER_IMAGE_LIST", "no default image")
+        images = [image for image in images.split(",") if image]
+        image_options = [
+            f'<option value="{image}">{image.upper()}</option>' for image in images
+        ]
+
+        # Get ram sizes
+        rams = os.environ.get("JUPYTER_RAM_LIST", "1G,2G,4G,8G")
+        rams = [ram for ram in rams.split(",") if ram]
+        ram_options = [f'<option value="{ram}">{ram}B</option>' for ram in rams]
+
+        # Get GPU
+        use_gpu = os.environ.get("WITH_GPU", "false").lower() == "true"
+        gpu_option = '<option value="N">Not Available</option>'
+        if use_gpu:
+            gpu_option = '<option value="Y">Yes</option>\n'
+            gpu_option += '<option value="N"> No </option>'
+
+        # Prepare template
+        options = _option_template.format(
+            images="\n".join(image_options),
+            rams="\n".join(ram_options),
+            gpu=gpu_option,
+        )
+
+        return options
 
     def options_from_form(self, formdata):
         options = {}
@@ -362,6 +388,6 @@ c.JupyterHub.services = [
     {
         "url": "http://collab_proxy:8099",
         "name": "Collaborative-Jupyter",
-        "api_token": "API_TOKEN_EXAMPLE",
+        "api_token": os.environ.get("JUPYTERHUB_API_TOKEN", "API_TOKEN_EXAMPLE"),
     },
 ]
