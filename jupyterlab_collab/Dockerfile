@@ -33,7 +33,7 @@ WORKDIR /usr/share/workspace
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--allow-root", "--debug", \
     "--LabApp.collaborative=True", \
     "--ServerApp.allow_password_change=False", \
-    "--ServerApp.keyfile=/usr/local/share/certs/jupyter/hostcert.key", \
-    "--ServerApp.certfile=/usr/local/share/certs/jupyter/hostcert.pem", \
+    "--ServerApp.keyfile=/usr/local/share/dodasts/certs/jupyter/hostcert.key", \
+    "--ServerApp.certfile=/usr/local/share/dodasts/certs/jupyter/hostcert.pem", \
     "--MappingKernelManager.cull_idle_timeout=10800", \
     "--MappingKernelManager.cull_connected=True"]
