@@ -17,4 +17,4 @@ RUN mkdir -p .init
 COPY jupyterhub_config.py /srv/jupyterhub/jupyterhub_config.py
 
 # COPY self registration da docker
-COPY --from=REGISTRATION /usr/local/bin/dodas-IAMClientRec ./.init/dodas-IAMClientRec
+COPY --from=REGISTRATION /usr/local/bin/dodas-IAMClientRec /.init/dodas-IAMClientRec
