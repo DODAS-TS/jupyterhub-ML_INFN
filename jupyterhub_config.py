@@ -49,7 +49,7 @@ if os.path.isfile(cache_file):
         cache_results = json.load(f)
 else:
     response = subprocess.check_output(
-        ["./.init/dodas-IAMClientRec", server_host], env=myenv
+        ["/.init/dodas-IAMClientRec", server_host], env=myenv
     )
     response_list = response.decode("utf-8").split("\n")
     client_id = response_list[len(response_list) - 3]
